@@ -110,210 +110,211 @@ while not contact:
                 contact = True
 
             #Move the person left or right
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                        personmovement = -10
-                    elif event.key == pygame.K_RIGHT:
-                        personmovement = 10
+            if event.type == pygame.KEYDOWN:
+                
+                if event.key == pygame.K_LEFT:
+                    personmovement = -10
+                elif event.key == pygame.K_RIGHT:
+                    personmovement = 10
 
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                        personmovement=0
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                    personmovement=0
                         
 
-            #Changes the positions 
-            personx += personmovement
-            trumpy += trumpmovement
+        #Changes the positions 
+        personx += personmovement
+        trumpy += trumpmovement
 
-            #Fill the background
-            screen.fill(background)
+        #Fill the background
+        screen.fill(background)
 
-            #Puts the person, trump, flag, wall, and slogan on the screen
-            screen.blit(person, (personx, persony))
-            trumppos(trumpx, trumpy)
-            wallpos(wallx, wally)
-            flagpos(flagx, flagy)
-            sloganpos(sloganx, slogany)
+        #Puts the person, trump, flag, wall, and slogan on the screen
+        screen.blit(person, (personx, persony))
+        trumppos(trumpx, trumpy)
+        wallpos(wallx, wally)
+        flagpos(flagx, flagy)
+        sloganpos(sloganx, slogany)
 
-            #Set the boundaries for the person, so the person can't go off the screen
-            if personx > screenw - personw:
-                personx = screenw - personw
-                personpos(personx, persony)
-            elif personx < 0:
-                personx = 0
-                personpos(personx, persony)
+        #Set the boundaries for the person, so the person can't go off the screen
+        if personx > screenw - personw:
+           personx = screenw - personw
+           personpos(personx, persony)
+        elif personx < 0:
+           personx = 0
+           personpos(personx, persony)
 
-            #Make trump come back when it goes off screen
-            if trumpy > screenh:
-                trumpy=-100
+        #Make trump come back when it goes off screen
+        if trumpy > screenh:
+           trumpy=-100
+           trumpx=randint(40,760)
+
+        #Make the wall come back when it goes off screen
+        if wally > screenh:
+           wally=-100
+           wallx=randint(50,750)
+
+        #Make the flag come back when it goes off screen
+        if flagy > screenh:
+           flagy=-100
+           flagx=randint(60,740)
+
+        #Make the slogan come back when it goes off screen
+        if slogany > screenh:
+           slogaly=-100
+           sloganx=randint(70,730)
+
+        #Add 1 point for every trump avoided, if trump hits the person reset the points counter to 0, then game resets
+        if trumpy == persony + 80:
+            if trumpx > personx + 20 or trumpx < personx -20:
+                points = points + 1
+        else:
+            points = 0
+                    
+            contact = False
+                    
+            personx=(screenw * 0.5)
+            persony=520
+            personmovement=0
+
+            trumpx=randint(40,760)
+            trumpy=-200
+            trumpmovement=10
+
+            wallx=randint(50,750)
+            wally=-200
+            wallmovement=15
+
+            flagx=randint(60,740)
+            flagy=-200
+            flagmovement=20
+
+            sloganx=randint(70,730)
+            slogany=-200
+            sloganmovement=20
+                    
+        #Add 1 point for every wall avoided, if trump hits the person reset the points counter to 0, then game resets
+        if wally == persony + 80:
+            if wallx > personx + 20 or wallx < personx -20:
+                points = points + 1
+            else:
+                points = 0
+                        
+                contact = False
+                        
+                personx=(screenw * 0.5)
+                persony=520
+                personmovement=0
+
                 trumpx=randint(40,760)
+                trumpy=-200
+                trumpmovement=10
 
-            #Make the wall come back when it goes off screen
-            if wally > screenh:
-                wally=-100
                 wallx=randint(50,750)
+                wally=-200
+                wallmovement=15
 
-            #Make the flag come back when it goes off screen
-            if flagy > screenh:
-                flagy=-100
                 flagx=randint(60,740)
+                flagy=-200
+                flagmovement=20
 
-            #Make the slogan come back when it goes off screen
-            if slogany > screenh:
-                slogaly=-100
                 sloganx=randint(70,730)
+                slogany=-200
+                sloganmovement=20
 
-            #Add 1 point for every trump avoided, if trump hits the person reset the points counter to 0, then game resets
-            if trumpy == persony + 80:
-                if trumpx > personx + 20 or trumpx < personx -20:
-                    points = points + 1
-                else:
-                    points = 0
-                    
-                    contact = False
-                    
-                    personx=(screenw * 0.5)
-                    persony=520
-                    personmovement=0
+        #Add 1 point for every wall avoided, if trump hits the person reset the points counter to 0, then game resets       
+        if flagy == persony + 80:
+            if flagx > personx + 20 or flagx < personx -20:
+                points = points + 1
+            else:
+                points = 0
+                        
+                contact = False
+                        
+                personx=(screenw * 0.5)
+                persony=520
+                personmovement=0
 
-                    trumpx=randint(40,760)
-                    trumpy=-200
-                    trumpmovement=10
+                trumpx=randint(40,760)
+                trumpy=-200
+                trumpmovement=10
 
-                    wallx=randint(50,750)
-                    wally=-200
-                    wallmovement=15
+                wallx=randint(50,750)
+                wally=-200
+                wallmovement=15
 
-                    flagx=randint(60,740)
-                    flagy=-200
-                    flagmovement=20
+                flagx=randint(60,740)
+                flagy=-200
+                flagmovement=20
 
-                    sloganx=randint(70,730)
-                    slogany=-200
-                    sloganmovement=20
-                    
-            #Add 1 point for every wall avoided, if trump hits the person reset the points counter to 0, then game resets
-            if wally == persony + 80:
-                if wallx > personx + 20 or wallx < personx -20:
-                    points = points + 1
-                else:
-                    points = 0
-                    
-                    contact = False
-                    
-                    personx=(screenw * 0.5)
-                    persony=520
-                    personmovement=0
-
-                    trumpx=randint(40,760)
-                    trumpy=-200
-                    trumpmovement=10
-
-                    wallx=randint(50,750)
-                    wally=-200
-                    wallmovement=15
-
-                    flagx=randint(60,740)
-                    flagy=-200
-                    flagmovement=20
-
-                    sloganx=randint(70,730)
-                    slogany=-200
-                    sloganmovement=20
-                    
-            #Add 1 point for every flag avoided, if trump hits the person reset the points counter to 0, then game resets
-            if flagy == persony + 80:
-                if flagx > personx + 20 or flagx < personx -20:
-                    points = points + 1
-                else:
-                    points = 0
-                    
-                    contact = False
-                    
-                    personx=(screenw * 0.5)
-                    persony=520
-                    personmovement=0
-
-                    trumpx=randint(40,760)
-                    trumpy=-200
-                    trumpmovement=10
-
-                    wallx=randint(50,750)
-                    wally=-200
-                    wallmovement=15
-
-                    flagx=randint(60,740)
-                    flagy=-200
-                    flagmovement=20
-
-                    sloganx=randint(70,730)
-                    slogany=-200
-                    sloganmovement=20
+                sloganx=randint(70,730)
+                slogany=-200
+                sloganmovement=20
                   
-            #Add 1 point for every slogan avoided, if trump hits the person reset the points counter to 0, then game resets
-            if slogany == persony + 80:
-                if sloganx > personx + 20 or sloganx < personx -20:
-                    points = points + 1
-                else:
-                    points = 0
+        #Add 1 point for every wall avoided, if trump hits the person reset the points counter to 0, then game resets       
+        if slogany == persony + 80:
+            if sloganx > personx + 20 or sloganx < personx -20:
+                points = points + 1
+            else:
+                points = 0
+                        
+                contact = False
+                        
+                personx=(screenw * 0.5)
+                persony=520
+                personmovement=0
+
+                trumpx=randint(40,760)
+                trumpy=-200
+                trumpmovement=10
+
+                wallx=randint(50,750)
+                wally=-200
+                wallmovement=15
+
+                flagx=randint(60,740)
+                flagy=-200
+                flagmovement=20
+
+                sloganx=randint(70,730)
+                slogany=-200
+                sloganmovement=20
                     
-                    contact = False
-                    
-                    personx=(screenw * 0.5)
-                    persony=520
-                    personmovement=0
+        #Display the points counter
+        scoretext=pygame.font.SysFont(None, 40)
+        score=scoretext.render("Points:" + str(points), True, red)
+        screen.blit(score, (30,20))
 
-                    trumpx=randint(40,760)
-                    trumpy=-200
-                    trumpmovement=10
-
-                    wallx=randint(50,750)
-                    wally=-200
-                    wallmovement=15
-
-                    flagx=randint(60,740)
-                    flagy=-200
-                    flagmovement=20
-
-                    sloganx=randint(70,730)
-                    slogany=-200
-                    sloganmovement=20
-                    
-            #Display the points counter
-            scoretext=pygame.font.SysFont(None, 40)
-            score=scoretext.render("Points:" + str(points), True, red)
-            screen.blit(score, (30,20))
-
-            #When you have more the 5 points, trumpmovement increases to 10
-            if points > 5:
-                trumpmovement=12
+        #When you have more the 5 points, trumpmovement increases to 10
+        if points > 5:
+            trumpmovement=12
                 
-            #When you have more than 15 points, the walls start to fall
-            if points > 15:
-                wally+=wallmovement
-                wallpos(wallx, wally)
+        #When you have more than 15 points, the walls start to fall
+        if points > 15:
+            wally+=wallmovement
+            wallpos(wallx, wally)
                 
-            #When you have more than 45 points, the flags start to fall
-            if points > 45:
-                flagy+=flagmovement
-                flagpos(flagx,flagy)
+        #When you have more than 45 points, the flags start to fall
+        if points > 45:
+            flagy+=flagmovement
+            flagpos(flagx,flagy)
                 
-            #When you have more than 75 points, the slogans start to fall
-            if points > 75:
-                slogany+=sloganmovement
-                sloganpos(sloganx, slogany)
+        #When you have more than 75 points, the slogans start to fall
+        if points > 75:
+            slogany+=sloganmovement
+            sloganpos(sloganx, slogany)
                 
-            #When you reach 150 points, displays a "Congratulations, You WON!!!"
-            if points == 150:
-                wintext = pygame.font.SysFont(None, 60)
-                winlabel = wintext.render("Congratulations!!!", True, black)
-                screen.blit(winlabel, (200, 200))
-                contact = True
-                pygame.time.delay(5000)
+        #When you reach 150 points, displays a "Congratulations, You WON!!!"
+        if points == 150:
+            wintext = pygame.font.SysFont(None, 60)
+            winlabel = wintext.render("Congratulations!!!", True, black)
+            screen.blit(winlabel, (200, 200))
+            time.sleep(5)
+            contact = True
                 
                 
-            pygame.display.update()
-            pygame.time.delay(50)
+        pygame.display.update()
+        pygame.time.delay(50)
 
 pygame.quit()
 quit()
@@ -329,7 +330,6 @@ quit()
         
         
     
-
 
 
 
