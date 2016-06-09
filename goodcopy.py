@@ -100,8 +100,6 @@ sloganmovement=20
 
 contact=False
 
-person_movement=10
-
 while not contact:
         
         events=pygame.event.get()
