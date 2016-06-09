@@ -140,6 +140,7 @@ while not contact:
         if personx > screenw - personw:
            personx = screenw - personw
            personpos(personx, persony)
+           
         elif personx < 0:
            personx = 0
            personpos(personx, persony)
@@ -168,30 +169,30 @@ while not contact:
         if trumpy == persony + 80:
             if trumpx > personx + 20 or trumpx < personx -20:
                 points = points + 1
-        else:
-            points = 0
-                    
-            contact = False
-                    
-            personx=(screenw * 0.5)
-            persony=520
-            personmovement=0
+            else:
+                points = 0
+                        
+                contact = False
+                        
+                personx=(screenw * 0.5)
+                persony=520
+                personmovement=0
 
-            trumpx=randint(40,760)
-            trumpy=-200
-            trumpmovement=10
+                trumpx=randint(40,760)
+                trumpy=-200
+                trumpmovement=10
 
-            wallx=randint(50,750)
-            wally=-200
-            wallmovement=15
+                wallx=randint(50,750)
+                wally=-200
+                wallmovement=15
 
-            flagx=randint(60,740)
-            flagy=-200
-            flagmovement=20
+                flagx=randint(60,740)
+                flagy=-200
+                flagmovement=20
 
-            sloganx=randint(70,730)
-            slogany=-200
-            sloganmovement=20
+                sloganx=randint(70,730)
+                slogany=-200
+                sloganmovement=20
                     
         #Add 1 point for every wall avoided, if trump hits the person reset the points counter to 0, then game resets
         if wally == persony + 80:
@@ -321,8 +322,6 @@ quit()
 
 
 
-
-        
 
         
 
